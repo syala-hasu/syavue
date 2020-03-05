@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <sya-key-input-text
-      text="hogehoge"></sya-key-input-text>
+    <sya-key-input-text text="hogehoge"></sya-key-input-text>
   </div>
 </template>
 
@@ -9,8 +8,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-  components: {
-  }
+  components: {}
 })
 export default class App extends Vue {}
 </script>
