@@ -1,7 +1,9 @@
 <template>
-  <span class="sya-key-input-text">
-    {{ displayText }}
-  </span>
+  <span class="sya-key-input-text"
+        v-bind:class="{
+          displayed: displayed,
+          'leave-caret': leaveCaret
+        }" >{{ displayText }}</span>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
@@ -26,10 +28,16 @@ export default class SyaKeyInputText extends Vue {
   })
   readonly offset!: number;
 
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  readonly leaveCaret!: boolean
+
   private displayText = "";
   private textCount = 0;
   private charList: Array<string> = [];
-  private displayed = false;
+  private displayed = false
 
   created(): void {
     this.charList = this.text.split("");
@@ -49,4 +57,27 @@ export default class SyaKeyInputText extends Vue {
   }
 }
 </script>
-<style lang="scss"></style>
+
+<style lang="scss" scoped>
+.sya-key-input-text {
+  &:not(.displayed)::after {
+    content: "|";
+  }
+
+  &.displayed.leave-caret::after {
+    content: "|";
+    animation: blink 1s linear infinite;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+</style>

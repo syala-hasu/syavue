@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <sya-key-input-text text="hogehoge"></sya-key-input-text>
+    <sya-key-input-text text="hogehoge" delay=300 leave-caret=true></sya-key-input-text>
   </div>
 </template>
 
