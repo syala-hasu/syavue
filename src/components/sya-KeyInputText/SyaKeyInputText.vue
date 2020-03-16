@@ -45,15 +45,18 @@ export default class SyaKeyInputText extends Vue {
   }
 
   mounted(): void {
-    for (let count = 1; count <= this.textCount; count++) {
-      setTimeout(() => {
+    this.inputText()
+  }
+
+  async inputText(): void {
+      for (let count = 1; count <= this.textCount; count++) {
+        await new Promise(resolve => setTimeout(resolve, count * this.delay + this.offset))
         this.displayText += this.charList.shift();
-        if (this.charList.length === 0) {
+        if (this.charList.lenfth === 0) {
           this.displayed = true;
           this.$emit("displayed");
         }
-      }, count * this.delay + this.offset);
-    }
+      }
   }
 }
 </script>
